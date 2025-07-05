@@ -113,6 +113,11 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
+/**payload category
+ */
+
+
+ 
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
