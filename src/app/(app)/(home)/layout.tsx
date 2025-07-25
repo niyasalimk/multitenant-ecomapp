@@ -5,6 +5,7 @@ import { getPayload } from 'payload'
 import { Footer } from "./footer";
 import { Navbar } from "./navbar";
 import { SeachFilters } from "./search-filters";
+import { CustomCategory } from './types';
 
 interface Props {
     children: React.ReactNode;
@@ -26,11 +27,12 @@ const payload = await getPayload({
         exists: false,
       },
     },
+    sort: "name"
   });
 
   
 
-  const formattedData = data.docs.map((doc) => ({
+  const formattedData: CustomCategory[] = data.docs.map((doc) => ({
     ...doc,
     subcategories: (doc.subcategories?.docs ?? []).map((doc) =>({
       ...(doc as Category),
@@ -45,10 +47,8 @@ const payload = await getPayload({
 
     return (
         <div className="flex flex-col min-h-screen">
-           
-
             <Navbar />
-            <SeachFilters data={data} />
+            <SeachFilters data={formattedData} />
             <div className="flex-1 bg-[#F4f4f0]">
             {children}
             </div>
